@@ -62,6 +62,19 @@
       [tooltip]="'objectManagementConfigurationTooltip' | pluginTranslate: pluginId | async"
     ></v-select>
   </ng-container>
+  <ng-container>
+    <v-select
+      [items]="taakVersionItems$"
+      [margin]="true"
+      name="taakVersion"
+      [title]="'taakVersion' | pluginTranslate: pluginId | async"
+      [disabled]="obs.disabled"
+      [defaultSelectionId]="obs.prefill?.taakVersion"
+      [required]="true"
+      [loading]="!taakVersionItems$"
+      [tooltip]="'taakVersionTooltip' | pluginTranslate: pluginId | async"
+    ></v-select>
+  </ng-container>
   <ng-container *ngIf="{processSelectItems: processSelectItems$ | async} as vars">
     <v-select
       [items]="vars.processSelectItems"

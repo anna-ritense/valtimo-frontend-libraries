@@ -19,6 +19,12 @@ import {PluginConfigurationData} from '../../../models';
 interface PortaaltaakConfig extends PluginConfigurationData {
   notificatiesApiPluginConfiguration: string;
   objectManagementConfigurationId: string;
+  taakVersion: TaakVersion;
+}
+
+enum TaakVersion {
+  V1 = 'V1',
+  V2 = 'V2',
 }
 
 type FormType = 'id' | 'url';
@@ -39,4 +45,4 @@ interface CreatePortalTaskConfig {
   verloopDurationInDays?: number;
 }
 
-export {PortaaltaakConfig, CreatePortalTaskConfig, FormType, Receiver, OtherReceiver};
+export {PortaaltaakConfig, CreatePortalTaskConfig, FormType, Receiver, OtherReceiver, TaakVersion};

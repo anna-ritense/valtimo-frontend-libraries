@@ -81,6 +81,9 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopDurationInDays: 'Verlooptijd taak in dagen',
       verloopDurationInDaysTooltip:
         'Het aantal dagen na aanmaken van een taak dat deze verloopt. Deze wordt alleen ingesteld voor de portaal taak, niet in het BPMN proces.',
+      taakVersion: 'Portaaltaak Versie',
+      taakVersionTooltip:
+        'De portaaltaakpatroon versie dat word gebruikt bij het aanmaken en verwerken van portaaltaken.',
     },
     en: {
       title: 'Portal task',
@@ -134,6 +137,9 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopDurationInDays: 'Number of days for the task to expire',
       verloopDurationInDaysTooltip:
         'The number of days from the creation time until the task expires. This will only be used in the portal task. The BPMN due date needs to be configured separately.',
+      taakVersion: 'Portal task version',
+      taakVersionTooltip:
+        'The version of the portal task to use when creating and modifying portal task objects.',
     },
     de: {
       title: 'Portalaufgabe',
@@ -185,6 +191,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopDurationInDays: 'Ablaufzeit der Aufgabe in Tagen',
       verloopDurationInDaysTooltip:
         'Die Anzahl der Tage vom Erstellungszeitpunkt bis zum Ablauf der Aufgabe. Dies wird nur in der Portalaufgabe verwendet. Das BPMN-Fälligkeitsdatum muss separat konfiguriert werden.',
+      taakVersion: 'Portalaufgabe Version',
+      taakVersionTooltip: 'Die Version des Portal-Aufgabenmusters, die verwendet werden soll.',
     },
   },
 };

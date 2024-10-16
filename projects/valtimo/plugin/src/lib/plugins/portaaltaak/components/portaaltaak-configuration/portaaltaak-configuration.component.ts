@@ -16,8 +16,8 @@
 
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {PluginConfigurationComponent} from '../../../../models';
-import {BehaviorSubject, combineLatest, map, Observable, Subscription, take} from 'rxjs';
-import {PortaaltaakConfig} from '../../models';
+import {BehaviorSubject, combineLatest, map, Observable, of, Subscription, take} from 'rxjs';
+import {PortaaltaakConfig, TaakVersion} from '../../models';
 import {PluginManagementService, PluginTranslationService} from '../../../../services';
 import {TranslateService} from '@ngx-translate/core';
 import {SelectItem} from '@valtimo/components';
@@ -63,6 +63,10 @@ export class PortaaltaakConfigurationComponent
       }))
     )
   );
+  readonly taakVersionItems$: SelectItem[] = Object.keys(TaakVersion).map(version => ({
+    id: version,
+    text: version,
+  }));
 
   readonly processSelectItems$: Observable<Array<SelectItem>> = this.processService
     .getProcessDefinitions()
