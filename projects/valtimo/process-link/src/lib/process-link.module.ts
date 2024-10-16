@@ -122,9 +122,6 @@ import {FormDisplayConfigurationComponent} from './components/form-display-confi
     FormFlowComponent,
     SelectUrlComponent,
   ],
-  providers: [
-    UrlValidatorService,
-    UrlResolverService
-  ]
+  providers: [UrlValidatorService, UrlResolverService],
 })
 export class ProcessLinkModule {}

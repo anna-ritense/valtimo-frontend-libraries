@@ -383,8 +383,11 @@ export class DossierDetailComponent
         }
 
         const displayType =
-          (result as TaskProcessLinkResult).properties.formDisplayType || DOSSIER_DETAIL_DEFAULT_DISPLAY_TYPE;
-        const size = (result as TaskProcessLinkResult).properties.formSize || DOSSIER_DETAIL_DEFAULT_DISPLAY_SIZE;
+          (result as TaskProcessLinkResult).properties.formDisplayType ||
+          DOSSIER_DETAIL_DEFAULT_DISPLAY_TYPE;
+        const size =
+          (result as TaskProcessLinkResult).properties.formSize ||
+          DOSSIER_DETAIL_DEFAULT_DISPLAY_SIZE;
 
         this.dossierDetailLayoutService.setFormDisplaySize(size);
         this.dossierDetailLayoutService.setFormDisplayType(displayType);
