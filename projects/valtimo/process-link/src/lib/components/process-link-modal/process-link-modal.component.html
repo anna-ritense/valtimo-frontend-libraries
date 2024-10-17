@@ -103,7 +103,9 @@
           obs.typeOfSelectedProgressLink === 'plugin'
         "
       >
-        <valtimo-plugin-action-configuration></valtimo-plugin-action-configuration>
+        <valtimo-plugin-action-configuration
+          [selectedPluginConfiguration]="selectedPluginConfiguration$"
+        ></valtimo-plugin-action-configuration>
       </ng-container>
     </ng-container>
     <valtimo-select-url

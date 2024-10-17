@@ -21,9 +21,11 @@
     prefill: prefillConfiguration$ ? (prefillConfiguration$ | async) : null,
     formTypeIsUrl: formTypeIsUrl$ | async,
     receiverIsOther: receiverIsOther$ | async,
+    taakVersion: taakVersion$ | async,
   } as obs"
 >
   <v-select
+    *ngIf="obs.taakVersion === TaakVersion.V1"
     [items]="formTypeSelectItems$ | async"
     [margin]="true"
     [widthInPx]="250"
@@ -36,7 +38,7 @@
     [clearable]="false"
   ></v-select>
   <v-input
-    *ngIf="obs.formTypeIsUrl === false"
+    *ngIf="obs.formTypeIsUrl === false && obs.taakVersion === TaakVersion.V1"
     name="formTypeId"
     [title]="'formTypeId' | pluginTranslate: pluginId | async"
     [margin]="true"
@@ -46,7 +48,7 @@
     [required]="true"
   ></v-input>
   <v-input
-    *ngIf="obs.formTypeIsUrl"
+    *ngIf="obs.formTypeIsUrl && obs.taakVersion === TaakVersion.V1"
     name="formTypeUrl"
     [title]="'formTypeUrl' | pluginTranslate: pluginId | async"
     [margin]="true"
@@ -56,6 +58,7 @@
     [required]="true"
   ></v-input>
   <valtimo-carbon-multi-input
+    *ngIf="obs.taakVersion === TaakVersion.V1"
     name="sendData"
     [title]="'sendData' | pluginTranslate: pluginId | async"
     type="keyValue"
@@ -68,6 +71,7 @@
     [initialAmountOfRows]="0"
   ></valtimo-carbon-multi-input>
   <valtimo-carbon-multi-input
+    *ngIf="obs.taakVersion === TaakVersion.V1"
     name="receiveData"
     [title]="'receiveData' | pluginTranslate: pluginId | async"
     type="keyValue"
@@ -80,6 +84,7 @@
     [initialAmountOfRows]="0"
   ></valtimo-carbon-multi-input>
   <v-select
+    *ngIf="obs.taakVersion === TaakVersion.V1"
     [items]="receiverSelectItems$ | async"
     [margin]="true"
     [widthInPx]="250"
@@ -92,7 +97,7 @@
     [clearable]="false"
   ></v-select>
   <v-input
-    *ngIf="obs.receiverIsOther"
+    *ngIf="obs.receiverIsOther && obs.taakVersion === TaakVersion.V1"
     name="identificationKey"
     [title]="'identificationKey' | pluginTranslate: pluginId | async"
     [margin]="true"
@@ -102,7 +107,7 @@
     [required]="true"
   ></v-input>
   <v-input
-    *ngIf="obs.receiverIsOther"
+    *ngIf="obs.receiverIsOther && obs.taakVersion === TaakVersion.V1"
     name="identificationValue"
     [title]="'identificationValue' | pluginTranslate: pluginId | async"
     [margin]="true"
@@ -112,6 +117,7 @@
     [required]="true"
   ></v-input>
   <v-input
+    *ngIf="obs.taakVersion === TaakVersion.V1"
     name="verloopDurationInDays"
     [type]="'number'"
     [title]="'verloopDurationInDays' | pluginTranslate: pluginId | async"

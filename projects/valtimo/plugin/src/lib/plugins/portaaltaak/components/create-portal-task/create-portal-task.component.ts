@@ -15,12 +15,29 @@
  */
 
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {FunctionConfigurationComponent} from '../../../../models';
-import {BehaviorSubject, combineLatest, map, Observable, Subscription, take} from 'rxjs';
+import {FunctionConfigurationComponent, PluginConfigurationData} from '../../../../models';
+import {
+  BehaviorSubject,
+  combineLatest,
+  map,
+  Observable,
+  Subscription,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {PluginTranslationService} from '../../../../services';
-import {CreatePortalTaskConfig, FormType, OtherReceiver, Receiver} from '../../models';
+import {
+  CreatePortalTaskConfig,
+  FormType,
+  OtherReceiver,
+  PortaaltaakConfig,
+  Receiver,
+  TaakVersion,
+} from '../../models';
 import {SelectItem} from '@valtimo/components';
+import {PluginStateService} from '@valtimo/process-link';
 
 @Component({
   selector: 'valtimo-create-portal-task',
@@ -55,9 +72,14 @@ export class CreatePortalTaskComponent
     map(value => !!(value?.receiver === 'other'))
   );
   private readonly valid$ = new BehaviorSubject<boolean>(false);
+  readonly taakVersion$: Observable<String> =
+    this.pluginStateService.selectedPluginConfiguration$.pipe(
+      map(config => config.properties['taakVersion'])
+    );
 
   constructor(
     private readonly translateService: TranslateService,
+    private readonly pluginStateService: PluginStateService,
     private readonly pluginTranslationService: PluginTranslationService
   ) {}
 
@@ -110,4 +132,6 @@ export class CreatePortalTaskComponent
       )
     );
   }
+
+  protected readonly TaakVersion = TaakVersion;
 }
