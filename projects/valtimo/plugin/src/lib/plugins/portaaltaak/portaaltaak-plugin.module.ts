@@ -19,33 +19,48 @@ import {PortaaltaakConfigurationComponent} from './components/portaaltaak-config
 import {PluginTranslatePipeModule} from '../../pipes';
 import {CommonModule} from '@angular/common';
 import {
+  CarbonMultiInputModule,
+  ComponentsPipesModule,
   FormModule,
   InputModule,
-  CarbonMultiInputModule,
-  ParagraphModule,
   SelectModule,
 } from '@valtimo/components';
 import {CreatePortalTaskComponent} from './components/create-portal-task/create-portal-task.component';
 import {CompletePortalTaskComponent} from './components/complete-portal-task/complete-portal-task.component';
+import {PortalTaskV1FormComponent} from './components/create-portal-task/components/portal-task-v1-form/portal-task-v1-form.component';
+import {PortalTaskV2FormComponent} from './components/create-portal-task/components/portal-task-v2-form/portal-task-v2-form.component';
+import {DatePickerModule, LoadingModule, ToggleModule} from 'carbon-components-angular';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     PortaaltaakConfigurationComponent,
     CreatePortalTaskComponent,
+    PortalTaskV1FormComponent,
+    PortalTaskV2FormComponent,
     CompletePortalTaskComponent,
   ],
   imports: [
     CommonModule,
     PluginTranslatePipeModule,
+    ComponentsPipesModule,
     FormModule,
     InputModule,
     SelectModule,
-    ParagraphModule,
     CarbonMultiInputModule,
+    FormsModule,
+    LoadingModule,
+    TranslateModule,
+    DatePickerModule,
+    ReactiveFormsModule,
+    ToggleModule,
   ],
   exports: [
     PortaaltaakConfigurationComponent,
     CreatePortalTaskComponent,
+    PortalTaskV1FormComponent,
+    PortalTaskV2FormComponent,
     CompletePortalTaskComponent,
   ],
 })

@@ -84,6 +84,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       taakVersion: 'Portaaltaak Versie',
       taakVersionTooltip:
         'De portaaltaakpatroon versie dat word gebruikt bij het aanmaken en verwerken van portaaltaken.',
+      unsupportedVersionMessage:
+        'Deze actie is niet gebruikbaar met de gekozen portaaltaak plugin instantie.',
     },
     en: {
       title: 'Portal task',
@@ -140,6 +142,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       taakVersion: 'Portal task version',
       taakVersionTooltip:
         'The version of the portal task to use when creating and modifying portal task objects.',
+      unsupportedVersionMessage:
+        'This action can not be used with the version of the chosen portal task plugin.',
     },
     de: {
       title: 'Portalaufgabe',
@@ -193,6 +197,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
         'Die Anzahl der Tage vom Erstellungszeitpunkt bis zum Ablauf der Aufgabe. Dies wird nur in der Portalaufgabe verwendet. Das BPMN-Fälligkeitsdatum muss separat konfiguriert werden.',
       taakVersion: 'Portalaufgabe Version',
       taakVersionTooltip: 'Die Version des Portal-Aufgabenmusters, die verwendet werden soll.',
+      unsupportedVersionMessage:
+        'Diese Aktion kann nicht mit dem gewählten Portal-Task-Plugin verwendet werden.',
     },
   },
 };

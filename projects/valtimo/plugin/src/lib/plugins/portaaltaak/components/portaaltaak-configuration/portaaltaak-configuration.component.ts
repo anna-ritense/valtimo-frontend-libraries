@@ -17,7 +17,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {PluginConfigurationComponent} from '../../../../models';
 import {BehaviorSubject, combineLatest, map, Observable, of, Subscription, take} from 'rxjs';
-import {PortaaltaakConfig, TaakVersion} from '../../models';
+import {PortaaltaakPluginConfig, TaakVersion} from '../../models';
 import {PluginManagementService, PluginTranslationService} from '../../../../services';
 import {TranslateService} from '@ngx-translate/core';
 import {SelectItem} from '@valtimo/components';
@@ -35,9 +35,10 @@ export class PortaaltaakConfigurationComponent
   @Input() save$: Observable<void>;
   @Input() disabled$: Observable<boolean>;
   @Input() pluginId: string;
-  @Input() prefillConfiguration$: Observable<PortaaltaakConfig>;
+  @Input() prefillConfiguration$: Observable<PortaaltaakPluginConfig>;
   @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() configuration: EventEmitter<PortaaltaakConfig> = new EventEmitter<PortaaltaakConfig>();
+  @Output() configuration: EventEmitter<PortaaltaakPluginConfig> =
+    new EventEmitter<PortaaltaakPluginConfig>();
   readonly notificatiesApiPluginSelectItems$: Observable<Array<SelectItem>> = combineLatest([
     this.pluginManagementService.getPluginConfigurationsByPluginDefinitionKey('notificatiesapi'),
     this.translateService.stream('key'),
@@ -80,7 +81,7 @@ export class PortaaltaakConfigurationComponent
     );
 
   private saveSubscription!: Subscription;
-  private readonly formValue$ = new BehaviorSubject<PortaaltaakConfig | null>(null);
+  private readonly formValue$ = new BehaviorSubject<PortaaltaakPluginConfig | null>(null);
   private readonly valid$ = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -99,12 +100,12 @@ export class PortaaltaakConfigurationComponent
     this.saveSubscription?.unsubscribe();
   }
 
-  formValueChange(formValue: PortaaltaakConfig): void {
+  formValueChange(formValue: PortaaltaakPluginConfig): void {
     this.formValue$.next(formValue);
     this.handleValid(formValue);
   }
 
-  private handleValid(formValue: PortaaltaakConfig): void {
+  private handleValid(formValue: PortaaltaakPluginConfig): void {
     const valid = !!(
       formValue.configurationTitle &&
       formValue.notificatiesApiPluginConfiguration &&

@@ -46,6 +46,7 @@ interface PluginConfigurationComponent extends ConfigurationComponent {
 
 interface FunctionConfigurationComponent extends ConfigurationComponent {
   prefillConfiguration$?: Observable<FunctionConfigurationData>;
+  selectedPluginConfiguration$?: Observable<PluginConfigurationData>;
   configuration: EventEmitter<FunctionConfigurationData>;
 }
 

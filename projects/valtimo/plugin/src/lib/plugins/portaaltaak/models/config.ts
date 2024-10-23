@@ -16,7 +16,7 @@
 
 import {PluginConfigurationData} from '../../../models';
 
-interface PortaaltaakConfig extends PluginConfigurationData {
+interface PortaaltaakPluginConfig extends PluginConfigurationData {
   notificatiesApiPluginConfiguration: string;
   objectManagementConfigurationId: string;
   taakVersion: TaakVersion;
@@ -27,13 +27,46 @@ enum TaakVersion {
   V2 = 'V2',
 }
 
+enum TaakSoort {
+  URL = 'url',
+  PORTAALFORMULIER = 'portaalformulier',
+  OGONEBETALING = 'ogonebetaling',
+}
+
+enum FormulierSoort {
+  URL = 'url',
+  ID = 'id',
+}
+
+enum TaakKoppelingRegistratie {
+  ZAAK = 'zaak',
+  PRODUCT = 'product',
+}
+
+enum ReceiverSource {
+  ZAAKINITIATOR = 'zaakInitiator',
+  OTHER = 'other',
+}
+
+enum OtherReceiverSoort {
+  BSN = 'bsn',
+  KVK = 'kvk',
+}
+
+interface CreatePortalTaskConfig {
+  taakVersion: TaakVersion;
+  config: CreateTaskActionConfig;
+}
+
 type FormType = 'id' | 'url';
 
 type Receiver = 'zaakInitiator' | 'other';
 
 type OtherReceiver = 'kvk' | 'bsn';
 
-interface CreatePortalTaskConfig {
+interface CreateTaskActionConfig {}
+
+interface CreateTaskV1Config extends CreateTaskActionConfig {
   formType: FormType;
   formTypeId?: string;
   formTypeUrl?: string;
@@ -45,4 +78,37 @@ interface CreatePortalTaskConfig {
   verloopDurationInDays?: number;
 }
 
-export {PortaaltaakConfig, CreatePortalTaskConfig, FormType, Receiver, OtherReceiver, TaakVersion};
+interface CreateTaskV2Config extends CreateTaskActionConfig {
+  taakSoort: TaakSoort;
+  taakUrl?: string;
+  portaalformulierSoort?: FormulierSoort;
+  portaalformulierValue?: string;
+  portaalformulierData?: Array<{key: string; value: string}>;
+  portaalformulierVerzondenData?: Array<{key: string; value: string}>;
+  ogoneBedrag?: number;
+  ogoneBetaalkenmerk?: string;
+  ogonePspid?: string;
+  receiver: ReceiverSource;
+  identificationKey?: OtherReceiverSoort;
+  identificationValue?: string;
+  verloopdatum?: string;
+  koppelingRegistratie?: TaakKoppelingRegistratie;
+  koppelingUuid?: string;
+}
+
+export {
+  PortaaltaakPluginConfig,
+  FormType,
+  Receiver,
+  ReceiverSource,
+  OtherReceiverSoort,
+  OtherReceiver,
+  TaakVersion,
+  TaakSoort,
+  FormulierSoort,
+  TaakKoppelingRegistratie,
+  CreatePortalTaskConfig,
+  CreateTaskActionConfig,
+  CreateTaskV1Config,
+  CreateTaskV2Config,
+};

@@ -20,6 +20,7 @@
 
 export * from './lib/services/form-flow.service';
 export * from './lib/services/plugin-state.service';
+export * from './lib/services/process-link-state.service';
 export * from './lib/services/process-link.service';
 export * from './lib/services/url-resolver.service';
 export * from './lib/services/url-validator.service';

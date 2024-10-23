@@ -15,29 +15,14 @@
  */
 
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {FunctionConfigurationComponent, PluginConfigurationData} from '../../../../models';
-import {
-  BehaviorSubject,
-  combineLatest,
-  map,
-  Observable,
-  Subscription,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
-import {TranslateService} from '@ngx-translate/core';
-import {PluginTranslationService} from '../../../../services';
+import {BehaviorSubject, combineLatest, map, Observable, Subscription, take} from 'rxjs';
 import {
   CreatePortalTaskConfig,
-  FormType,
-  OtherReceiver,
-  PortaaltaakConfig,
-  Receiver,
+  CreateTaskActionConfig,
+  PortaaltaakPluginConfig,
   TaakVersion,
 } from '../../models';
-import {SelectItem} from '@valtimo/components';
-import {PluginStateService} from '@valtimo/process-link';
+import {FunctionConfigurationComponent} from '../../../../models';
 
 @Component({
   selector: 'valtimo-create-portal-task',
@@ -50,88 +35,63 @@ export class CreatePortalTaskComponent
   @Input() save$: Observable<void>;
   @Input() disabled$: Observable<boolean>;
   @Input() pluginId: string;
+  @Input() selectedPluginConfiguration$: Observable<PortaaltaakPluginConfig>;
   @Input() prefillConfiguration$: Observable<CreatePortalTaskConfig>;
   @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() configuration: EventEmitter<CreatePortalTaskConfig> =
     new EventEmitter<CreatePortalTaskConfig>();
-  readonly FORM_TYPE_ITEMS: Array<FormType> = ['id', 'url'];
-  readonly formTypeSelectItems$ = this.selectItemsToTranslatedItems(this.FORM_TYPE_ITEMS);
-
-  readonly RECEIVER_ITEMS: Array<Receiver> = ['zaakInitiator', 'other'];
-  readonly receiverSelectItems$ = this.selectItemsToTranslatedItems(this.RECEIVER_ITEMS);
-
-  readonly OTHER_RECEIVER_ITEMS: Array<OtherReceiver> = ['kvk', 'bsn'];
-  readonly otherReceiverSelectItems$ = this.selectItemsToTranslatedItems(this.OTHER_RECEIVER_ITEMS);
-
   private saveSubscription!: Subscription;
-  private readonly formValue$ = new BehaviorSubject<CreatePortalTaskConfig | null>(null);
-  readonly formTypeIsUrl$: Observable<boolean> = this.formValue$.pipe(
-    map(value => !!(value?.formType === 'url'))
-  );
-  readonly receiverIsOther$: Observable<boolean> = this.formValue$.pipe(
-    map(value => !!(value?.receiver === 'other'))
-  );
+  private readonly formValue$ = new BehaviorSubject<CreateTaskActionConfig | null>(null);
   private readonly valid$ = new BehaviorSubject<boolean>(false);
-  readonly taakVersion$: Observable<String> =
-    this.pluginStateService.selectedPluginConfiguration$.pipe(
-      map(config => config.properties['taakVersion'])
-    );
+  protected readonly taakVersion$ = new BehaviorSubject<TaakVersion>(null);
 
-  constructor(
-    private readonly translateService: TranslateService,
-    private readonly pluginStateService: PluginStateService,
-    private readonly pluginTranslationService: PluginTranslationService
-  ) {}
+  protected readonly TaakVersion = TaakVersion;
+
+  constructor() {}
 
   ngOnInit(): void {
+    this.detectVersion();
     this.openSaveSubscription();
+  }
+
+  private detectVersion() {
+    combineLatest({
+      pluginVersion: this.selectedPluginConfiguration$.pipe(
+        map(pluginProperties => (pluginProperties ? pluginProperties.taakVersion : undefined))
+      ),
+      prefillVersion: this.prefillConfiguration$.pipe(
+        map(config => (config ? config.taakVersion : undefined))
+      ),
+    })
+      .pipe(map(versions => versions.prefillVersion || versions.pluginVersion))
+      .subscribe(taakVersion => this.taakVersion$.next(taakVersion));
   }
 
   ngOnDestroy(): void {
     this.saveSubscription?.unsubscribe();
   }
 
-  formValueChange(formValue: CreatePortalTaskConfig): void {
-    this.formValue$.next(formValue);
-    this.handleValid(formValue);
-  }
-
-  private handleValid(formValue: CreatePortalTaskConfig): void {
-    const valid =
-      !!formValue.formType &&
-      (!!(formValue.formType === 'url' && formValue.formTypeUrl) ||
-        !!(formValue.formType === 'id' && formValue.formTypeId)) &&
-      !!formValue?.receiver &&
-      (formValue.receiver === 'other'
-        ? !!(formValue.identificationValue && formValue.identificationKey)
-        : true);
-
-    this.valid$.next(valid);
-    this.valid.emit(valid);
-  }
-
   private openSaveSubscription(): void {
-    this.saveSubscription = this.save$?.subscribe(save => {
-      combineLatest([this.formValue$, this.valid$])
+    this.saveSubscription = this.save$?.subscribe(() => {
+      combineLatest([this.taakVersion$, this.formValue$, this.valid$])
         .pipe(take(1))
-        .subscribe(([formValue, valid]) => {
+        .subscribe(([taakVersion, formValue, valid]) => {
           if (valid) {
-            this.configuration.emit(formValue);
+            this.configuration.emit({
+              taakVersion: taakVersion,
+              config: formValue,
+            });
           }
         });
     });
   }
 
-  private selectItemsToTranslatedItems(selectItems: Array<string>): Observable<Array<SelectItem>> {
-    return this.translateService.stream('key').pipe(
-      map(() =>
-        selectItems.map(item => ({
-          id: item,
-          text: this.pluginTranslationService.instant(item, this.pluginId),
-        }))
-      )
-    );
+  handleFormValue(actionConfiguration: CreateTaskActionConfig): void {
+    this.formValue$.next(actionConfiguration);
   }
 
-  protected readonly TaakVersion = TaakVersion;
+  handleFormValid(isValid: boolean): void {
+    this.valid$.next(isValid);
+    this.valid.emit(isValid);
+  }
 }
