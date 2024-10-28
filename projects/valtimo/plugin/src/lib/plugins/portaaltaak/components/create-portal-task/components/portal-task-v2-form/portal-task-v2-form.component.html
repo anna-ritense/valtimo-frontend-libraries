@@ -101,8 +101,8 @@
       *ngIf="obs.formValue?.taakSoort === TaakSoort.PORTAALFORMULIER"
       name="portaalformulierData"
       [title]="'sendData' | pluginTranslate: pluginId | async"
-      [keyColumnTitle]="'portaalformulierVerzondenDataKey' | pluginTranslate: pluginId | async"
-      [valueColumnTitle]="'portaalformulierVerzondenDataValue' | pluginTranslate: pluginId | async"
+      [keyColumnTitle]="'portaalformulierDataKey' | pluginTranslate: pluginId | async"
+      [valueColumnTitle]="'portaalformulierDataValue' | pluginTranslate: pluginId | async"
       type="keyValue"
       [disabled]="obs.disabled"
       [defaultValues]="obs.prefill?.portaalformulierData"
@@ -208,7 +208,7 @@
       [margin]="true"
       [defaultValue]="obs.prefill?.verloopdatum"
       [disabled]="obs.disabled"
-      [tooltip]="'verloopdatum' | pluginTranslate: pluginId | async"
+      [tooltip]="'verloopdatumTooltip' | pluginTranslate: pluginId | async"
       [required]="true"
     ></v-input>
   </ng-container>
