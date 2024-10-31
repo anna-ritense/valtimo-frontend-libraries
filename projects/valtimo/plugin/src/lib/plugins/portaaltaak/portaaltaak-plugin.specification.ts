@@ -86,6 +86,45 @@ const portaaltaakPluginSpecification: PluginSpecification = {
         'De portaaltaakpatroon versie dat word gebruikt bij het aanmaken en verwerken van portaaltaken.',
       unsupportedVersionMessage:
         'Deze actie is niet gebruikbaar met de gekozen portaaltaak plugin instantie.',
+      zaak: 'Zaak',
+      product: 'Product',
+      'toggle.ja': 'Ja',
+      'toggle.nee': 'Nee',
+      taakSoort: 'Taak type',
+      taakSoortTooltip:
+        'Het te tonen type van de taak voor de gebruiker. Dit wijst aan wat voor een interactie de gebruiker zal krijgen.',
+      ogonebetaling: 'Ogone betaling',
+      ogoneBedrag: 'Bedrag',
+      ogoneBedragTooltip: 'Het te betalen bedrag.',
+      ogoneBetaalkenmerk: 'Betalingskenmerk',
+      ogoneBetaalkenmerkTooltip: 'Een verwijzing voor de betalings voorkeur',
+      ogonePspid: 'Betalings aanbieder ID',
+      ogonePspidTooltip:
+        'De ID van aanbieder van de betaling. Zie Ogone documentatie voor meer informatie.',
+      taakUrl: 'Taak URL',
+      taakUrlTooltip: 'Een URL die naar iets verwijst.',
+      portaalformulier: 'Portaalformulier',
+      portaalformulierSoort: 'Portaalformulier referentietype',
+      portaalformulierSoortTooltip:
+        'Kies het referentietype. Dit kan een formulier-ID zijn van een formulierdefinitie die aanwezig is in de verbonden portal, of een externe URL naar een object dat de formulierdefinitie bevat.',
+      portaalformulierValue: 'Portaalformulier referentie',
+      portaalformulierValueTooltip: 'De referentie van de weer te geven formulierdefinitie.',
+      portaalformulierDataTooltip:
+        'De invoergegevenstoewijzing die definieert waar en welke informatie beschikbaar moet worden gemaakt in het taakformulier.',
+      portaalformulierDataKey: 'Bron van invoer',
+      portaalformulierDataValue: 'Formulier invoer data waarde',
+      portaalformulierVerzondenDataTooltip:
+        'De gedefinieerde gegevens bepalen waar en wat er van een ingediend taakformulier moet worden opgeslagen.',
+      portaalformulierVerzondenDataKey: 'Verzonden formilier data bron',
+      portaalformulierVerzondenDataValue: 'Uitvoer bestemming',
+      koppelingVanToepassing: 'Heeft relatie',
+      koppelingRegistratie: 'Relatie type',
+      koppelingRegistratieTooltip: 'Deze bepaalt met welk type entiteit de taak een relatie heeft.',
+      koppelingUuid: 'Relatie identificatie',
+      koppelingUuidTooltip: 'De unieke identificatie (UUID) van de zaak of het product',
+      verloopdatumVanToepassing: 'Heeft verloopdatum',
+      verloopdatum: 'Verloopdatum',
+      verloopdatumTooltip: 'Vervaldatum voor de taak. (jjjj-mm-dd)',
     },
     en: {
       title: 'Portal task',
@@ -206,10 +245,10 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       url: 'URL',
       sendData: 'Auftragsdaten für den Empfänger',
       sendDataTooltip:
-        "Geben Sie hier Schlüssel und Werte für Daten ein, die an die Objecten API gesendet werden sollen. Der Schlüssel hier ist der Schlüssel des Form.IO-Felds, das gefüllt werden soll (z. B. 'firstName‘). Der Wert zeigt auf die Daten, mit denen dieses Feld gefüllt wird muss ausgefüllt werden (z.B. 'doc:/customer/firstName').",
+        'Geben Sie hier Schlüssel und Werte für Daten ein, die an die Objecten API gesendet werden sollen. Der Schlüssel hier ist der Schlüssel des Form.IO-Felds, das gefüllt werden soll. Der Wert zeigt auf die Daten, mit denen dieses Feld gefüllt wird muss ausgefüllt werden.',
       receiveData: 'Vom Empfänger eingegebene Informationen',
       receiveDataTooltip:
-        "Geben Sie hier Schlüssel und Werte für Daten ein, die von der Objecten API empfangen werden sollen. Der Schlüssel hier ist der Ort, an dem die Daten gespeichert werden sollen (z. B. 'doc:/customer/signedAgreement'). Der Wert zeigt auf den Schlüssel des Form.IO-Feld, aus dem die Daten stammen sollen (z. B. '/signedAgreement').",
+        'Geben Sie hier Schlüssel und Werte für Daten ein, die von der Objecten API empfangen werden sollen. Der Schlüssel hier ist der Ort, an dem die Daten gespeichert werden sollen. Der Wert zeigt auf den Schlüssel des Form.IO-Feld, aus dem die Daten stammen sollen.',
       receiver: 'Empfänger',
       receiverTooltip:
         'Bestimmen Sie hier, wer die Daten der abgeschlossenen Aufgabe erhalten soll.',
@@ -238,6 +277,46 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       taakVersionTooltip: 'Die Version des Portal-Aufgabenmusters, die verwendet werden soll.',
       unsupportedVersionMessage:
         'Diese Aktion kann nicht mit dem gewählten Portal-Task-Plugin verwendet werden.',
+      zaak: 'Fall',
+      product: 'Produkt',
+      'toggle.ja': 'Ja',
+      'toggle.nee': 'Nein',
+      taakSoort: 'Aufgabentyp',
+      taakSoortToolTip:
+        'Der Aufgabentyp, der dem Benutzer angezeigt werden soll. Dies bestimmt, welche Art von Interaktion der Empfänger erhält.',
+      ogonebetaling: 'Ogone-Zahlung',
+      ogoneBedrag: 'Zahlungsbetrag',
+      ogoneBedragTooltip: 'Der Betrag, den der Benutzer bei dieser Zahlungsaufgabe zahlen muss.',
+      ogoneBetaalkenmerk: 'Zahlungsreferenz',
+      ogoneBetaalkenmerkTooltip: 'Eine Referenz zur Identifizierung der Zahlung.',
+      ogonePspid: 'ID des Zahlungsdienstleisters',
+      ogonePspidTooltip:
+        'Die ID des Zahlungsdienstleisters, die bei dieser Zahlung verwendet werden soll.',
+      taakUrl: 'Aufgaben-URL',
+      taakUrlTooltip: 'Eine URL, die die Aufgabe enthält, die der Benutzer ausführen muss',
+      portaalformulier: 'Portalformular',
+      portaalformulierSoort: 'Referenztyp des Portalformulars',
+      portaalformulierSoortTooltip:
+        'Wählen Sie den Referenztyp aus. Kann entweder eine Formular-ID einer Formulardefinition sein, die im verbundenen Portal vorhanden ist, oder eine externe URL zu einem Objekt, das die Formulardefinition enthält.',
+      portaalformulierValue: 'Portalformularreferenz',
+      portaalformulierValueTooltip: 'Die Referenz der anzuzeigenden Formulardefinition.',
+      portaalformulierDataTooltip:
+        'Die Eingabedatenzuordnung, die definiert, wo und welche Informationen im Aufgabenformular verfügbar gemacht werden sollen.',
+      portaalformulierDataKey: 'Eingabequelle',
+      portaalformulierDataValue: 'Formulareingabedatenziel',
+      portaalformulierVerzondenDataTooltip:
+        'Die Ausgabedatenzuordnung, die definiert, wo und was von einem übermittelten Aufgabenformular gespeichert werden soll.',
+      portaalformulierVerzondenDataKey: 'Formularausgabedatenquelle',
+      portaalformulierVerzondenDataValue: 'Ausgabeziel',
+      koppelingVanToepassing: 'Hat Beziehung',
+      koppelingRegistratie: 'Beziehung Typ',
+      koppelingRegistratieTooltip:
+        'Dies bestimmt, zu welcher Art von Entität diese Aufgabe eine Beziehung hat.',
+      koppelingUuid: 'Beziehungskennung',
+      koppelingUuidTooltip: 'Die eindeutige Kennung des Pakets oder Produkts',
+      verloopdatumVanToepassing: 'Hat Fälligkeitsdatum',
+      verloopdatum: 'Fälligkeitsdatum',
+      verloopdatumTooltip: 'Das Datum, an dem die Aufgabe fällig ist.',
     },
   },
 };

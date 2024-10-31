@@ -23,6 +23,7 @@
     taakSoortItems: taakSoortItems$ | async,
     formulierSoortItems: formulierSoortItems$ | async,
   } as obs"
+  xmlns="http://www.w3.org/1999/html"
 >
   <ng-container>
     <v-select
@@ -160,16 +161,19 @@
       [tooltip]="'identificationValueTooltip' | pluginTranslate: pluginId | async"
       [required]="true"
     ></v-input>
-    <cds-toggle
-      #koppelingVanToepassing
-      [label]="'koppelingVanToepassing' | pluginTranslate: pluginId | async"
-      [ngClass]="'v-input--margin'"
-      [onText]="'toggle.ja' | pluginTranslate: pluginId | async"
-      [offText]="'toggle.nee' | pluginTranslate: pluginId | async"
-      [checked]="!!obs.prefill?.koppelingRegistratie"
-      [disabled]="obs.disabled"
-    >
-    </cds-toggle>
+    <ng-container>
+      <cds-toggle
+        #koppelingVanToepassing
+        [label]="'koppelingVanToepassing' | pluginTranslate: pluginId | async"
+        [ngClass]="'v-input--margin'"
+        [onText]="'toggle.ja' | pluginTranslate: pluginId | async"
+        [offText]="'toggle.nee' | pluginTranslate: pluginId | async"
+        [checked]="!!obs.prefill?.koppelingRegistratie"
+        [disabled]="obs.disabled"
+      >
+      </cds-toggle>
+      <br />
+    </ng-container>
     <v-select
       *ngIf="koppelingVanToepassing.checked"
       [items]="koppelingRegistratieItems$ | async"
@@ -191,16 +195,19 @@
       [tooltip]="'koppelingUuidTooltip' | pluginTranslate: pluginId | async"
       [required]="true"
     ></v-input>
-    <cds-toggle
-      #verloopdatumVanToepassing
-      [label]="'verloopdatumVanToepassing' | pluginTranslate: pluginId | async"
-      [ngClass]="'v-input--margin'"
-      [onText]="'toggle.ja' | pluginTranslate: pluginId | async"
-      [offText]="'toggle.nee' | pluginTranslate: pluginId | async"
-      [checked]="!!obs.prefill?.verloopdatum"
-      [disabled]="obs.disabled"
-    >
-    </cds-toggle>
+    <ng-container>
+      <cds-toggle
+        #verloopdatumVanToepassing
+        [label]="'verloopdatumVanToepassing' | pluginTranslate: pluginId | async"
+        [ngClass]="'v-input--margin'"
+        [onText]="'toggle.ja' | pluginTranslate: pluginId | async"
+        [offText]="'toggle.nee' | pluginTranslate: pluginId | async"
+        [checked]="!!obs.prefill?.verloopdatum"
+        [disabled]="obs.disabled"
+      >
+      </cds-toggle>
+      <br />
+    </ng-container>
     <v-input
       *ngIf="verloopdatumVanToepassing.checked"
       name="verloopdatum"
