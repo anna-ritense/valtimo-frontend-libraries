@@ -29,7 +29,12 @@ import {CreatePortalTaskComponent} from './components/create-portal-task/create-
 import {CompletePortalTaskComponent} from './components/complete-portal-task/complete-portal-task.component';
 import {PortalTaskV1FormComponent} from './components/create-portal-task/components/portal-task-v1-form/portal-task-v1-form.component';
 import {PortalTaskV2FormComponent} from './components/create-portal-task/components/portal-task-v2-form/portal-task-v2-form.component';
-import {DatePickerModule, LoadingModule, ToggleModule} from 'carbon-components-angular';
+import {
+  DatePickerModule,
+  LoadingModule,
+  NotificationModule,
+  ToggleModule,
+} from 'carbon-components-angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
 
@@ -55,6 +60,7 @@ import {TranslateModule} from '@ngx-translate/core';
     DatePickerModule,
     ReactiveFormsModule,
     ToggleModule,
+    NotificationModule,
   ],
   exports: [
     PortaaltaakConfigurationComponent,

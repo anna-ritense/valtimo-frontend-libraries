@@ -125,6 +125,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopdatumVanToepassing: 'Heeft verloopdatum',
       verloopdatum: 'Verloopdatum',
       verloopdatumTooltip: 'Vervaldatum voor de taak. (jjjj-mm-dd)',
+      objectManagementConfigurationWarning:
+        'Zorg ervoor dat u een compatibele Object Management configuratie selecteert!',
     },
     en: {
       title: 'Portal task',
@@ -222,6 +224,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopdatumVanToepassing: 'Has due date',
       verloopdatum: 'Due date',
       verloopdatumTooltip: 'The date that the task is due for.',
+      objectManagementConfigurationWarning:
+        'Please make sure to select a compatible Object Management configuration!',
     },
     de: {
       title: 'Portalaufgabe',
@@ -317,6 +321,8 @@ const portaaltaakPluginSpecification: PluginSpecification = {
       verloopdatumVanToepassing: 'Hat Fälligkeitsdatum',
       verloopdatum: 'Fälligkeitsdatum',
       verloopdatumTooltip: 'Das Datum, an dem die Aufgabe fällig ist.',
+      objectManagementConfigurationWarning:
+        'Bitte achten Sie darauf, eine kompatible Objektverwaltungskonfiguration auszuwählen!',
     },
   },
 };
