@@ -19,6 +19,7 @@ import {HttpClient} from '@angular/common/http';
 import {combineLatest, Observable} from 'rxjs';
 import {
   PluginConfiguration,
+  PluginConfigurationData,
   PluginConfigurationWithLogo,
   PluginDefinition,
   PluginFunction,
@@ -50,6 +51,12 @@ export class PluginManagementService {
   getPluginFunctions(pluginDefinitionId: string): Observable<Array<PluginFunction>> {
     return this.http.get<Array<PluginFunction>>(
       `${this.VALTIMO_API_ENDPOINT_URI}v1/plugin/definition/${pluginDefinitionId}/action`
+    );
+  }
+
+  getPluginConfiguration(pluginConfigurationId: string): Observable<PluginConfigurationData> {
+    return this.http.get<PluginConfigurationData>(
+      `${this.VALTIMO_API_ENDPOINT_URI}v1/plugin/configuration/${pluginConfigurationId}`
     );
   }
 
