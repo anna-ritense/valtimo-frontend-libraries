@@ -169,10 +169,16 @@ export class PluginConfigurationContainerComponent
         }
 
         if (this.selectedPluginConfiguration$ && type === 'function') {
-          (instance as FunctionConfigurationComponent).selectedPluginConfiguration$ =
+          (instance as FunctionConfigurationComponent).selectedPluginConfigurationData$ =
             this.selectedPluginConfiguration$.pipe(
               map(configuration =>
-                configuration ? configuration : undefined
+                configuration
+                  ? ({
+                      configurationId: configuration.id,
+                      configurationTitle: configuration.title,
+                      ...configuration.properties,
+                    } as PluginConfigurationData)
+                  : undefined
               )
             );
         }
